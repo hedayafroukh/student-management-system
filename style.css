@@ -13,6 +13,9 @@
   --label-color: #082034;
   --select-color: #345d81;
   --option-color: #999;
+  --delete-btn-color: #d9534f;
+  --edit-btn-hover-color: #244b67;
+  --delete-btn-hover-color: #c9302c;
 }
 body {
   font-family: "Outfit", sans-serif;
@@ -78,6 +81,7 @@ section h2 {
   font-size: 17px;
   font-weight: bold;
   border-radius: 13px;
+  font-family: "Outfit", sans-serif;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -159,6 +163,42 @@ section h2 {
   font-size: 15px;
 }
 
+.edit-btn,
+.delete-btn {
+  min-width: 70px;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  color: var(--white);
+  font-family: "Outfit", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-btn {
+  background-color: var(--second-color);
+  margin-right: 8px;
+}
+
+.edit-btn:hover {
+  background-color: var(--edit-btn-hover-color);
+  transform: scale(1.02);
+}
+
+.delete-btn {
+  background-color: var(--delete-btn-color);
+}
+
+.delete-btn:hover {
+  background-color: var(--delete-btn-hover-color);
+  transform: scale(1.02);
+}
+.students td:last-child {
+  white-space: nowrap;
+}
+
 @media (max-width: 768px) {
   header h1 {
     font-size: 28px;
@@ -166,6 +206,10 @@ section h2 {
 
   header p {
     font-size: 15px;
+  }
+
+  main {
+    width: 95%;
   }
 
   section {
@@ -187,7 +231,7 @@ section h2 {
   }
 
   .students table {
-    min-width: 650px;
+    min-width: 600px;
   }
 }
 
@@ -209,6 +253,10 @@ section h2 {
     font-size: 14px;
   }
 
+  section {
+    padding: 15px;
+  }
+
   .student-form input,
   .student-form select,
   .controls input,
@@ -218,9 +266,20 @@ section h2 {
     padding: 14px 10px;
   }
 
+  .students table {
+    min-width: 550px;
+  }
+
   .students th,
   .students td {
-    padding: 12px;
-    font-size: 14px;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    min-width: 60px;
+    padding: 6px 10px;
+    font-size: 12px;
   }
 }

@@ -5,6 +5,7 @@ const studentName = document.getElementById("studentName");
 const studentId = document.getElementById("studentId");
 const major = document.getElementById("major");
 const gpa = document.getElementById("gpa");
+const studentTable = document.getElementById("studentTable");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -15,6 +16,30 @@ form.addEventListener("submit", function (event) {
     gpa: gpa.value,
   };
   students.push(student);
+  displayStudents();
   console.log(students);
   form.reset();
 });
+
+function displayStudents() {
+  studentTable.innerHTML = "";
+  students.forEach(function (student, index) {
+    let row = `
+        <tr>
+            <td>${student.name}</td>
+            <td>${student.id}</td>
+            <td>${student.major}</td>
+            <td>${student.gpa}</td>
+            <td>
+                <button class="edit-btn" data-index="${index}">
+                    Edit
+                </button>
+                <button class="delete-btn" data-index="${index}">
+                    Delete
+                </button>
+            </td>
+        </tr>
+        `;
+    studentTable.innerHTML += row;
+  });
+}
