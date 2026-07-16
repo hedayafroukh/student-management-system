@@ -6,14 +6,32 @@ const studentId = document.getElementById("studentId");
 const major = document.getElementById("major");
 const gpa = document.getElementById("gpa");
 const studentTable = document.getElementById("studentTable");
+const message = document.getElementById("message");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
+  if (
+    studentName.value === "" ||
+    studentId.value === "" ||
+    major.value === "" ||
+    gpa.value === ""
+  ) {
+    alert("Please fill all fields.");
+    return;
+  }
+  let foundStudent = students.find(function (student) {
+    return student.id === studentId.value;
+  });
+
+  if (foundStudent) {
+    alert("Student ID already exists.");
+    return;
+  }
   let student = {
     name: studentName.value,
     id: studentId.value,
     major: major.value,
-    gpa: gpa.value,
+    gpa: Number(gpa.value),
   };
   students.push(student);
   displayStudents();
@@ -22,6 +40,11 @@ form.addEventListener("submit", function (event) {
 
 function displayStudents() {
   studentTable.innerHTML = "";
+  if (students.length === 0) {
+    message.style.display = "block";
+  } else {
+    message.style.display = "none";
+  }
   students.forEach(function (student, index) {
     let row = `
         <tr>
@@ -62,3 +85,4 @@ studentTable.addEventListener("click", function (event) {
     displayStudents();
   }
 });
+displayStudents();
