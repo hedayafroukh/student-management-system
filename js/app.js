@@ -7,6 +7,7 @@ const major = document.getElementById("major");
 const gpa = document.getElementById("gpa");
 const studentTable = document.getElementById("studentTable");
 const message = document.getElementById("message");
+const search = document.getElementById("search");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -40,12 +41,21 @@ form.addEventListener("submit", function (event) {
 
 function displayStudents() {
   studentTable.innerHTML = "";
-  if (students.length === 0) {
+
+  let searchValue = search.value.toLowerCase();
+
+  let filteredStudents = students.filter(function (student) {
+    return (
+      student.name.toLowerCase().includes(searchValue) ||
+      student.id.includes(searchValue)
+    );
+  });
+  if (filteredStudents.length === 0) {
     message.style.display = "block";
   } else {
     message.style.display = "none";
   }
-  students.forEach(function (student, index) {
+  filteredStudents.forEach(function (student, index) {
     let row = `
         <tr>
             <td>${student.name}</td>
@@ -84,5 +94,8 @@ studentTable.addEventListener("click", function (event) {
 
     displayStudents();
   }
+});
+search.addEventListener("keyup", function () {
+  displayStudents();
 });
 displayStudents();
