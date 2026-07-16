@@ -8,6 +8,7 @@ const gpa = document.getElementById("gpa");
 const studentTable = document.getElementById("studentTable");
 const message = document.getElementById("message");
 const search = document.getElementById("search");
+const filterMajor = document.getElementById("filterMajor");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -50,6 +51,11 @@ function displayStudents() {
       student.id.includes(searchValue)
     );
   });
+  if (filterMajor.value !== "all") {
+    filteredStudents = filteredStudents.filter(function (student) {
+      return student.major === filterMajor.value;
+    });
+  }
   if (filteredStudents.length === 0) {
     message.style.display = "block";
   } else {
@@ -96,6 +102,9 @@ studentTable.addEventListener("click", function (event) {
   }
 });
 search.addEventListener("keyup", function () {
+  displayStudents();
+});
+filterMajor.addEventListener("change", function () {
   displayStudents();
 });
 displayStudents();
