@@ -50,4 +50,15 @@ studentTable.addEventListener("click", function (event) {
       displayStudents();
     }
   }
+  if (event.target.classList.contains("edit-btn")) {
+    let index = event.target.dataset.index;
+    let student = students[index];
+    studentName.value = student.name;
+    studentId.value = student.id;
+    major.value = student.major;
+    gpa.value = student.gpa;
+    students.splice(index, 1);
+
+    displayStudents();
+  }
 });
