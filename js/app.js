@@ -9,6 +9,7 @@ const studentTable = document.getElementById("studentTable");
 const message = document.getElementById("message");
 const search = document.getElementById("search");
 const filterMajor = document.getElementById("filterMajor");
+const sortGpa = document.getElementById("sortGpa");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -54,6 +55,15 @@ function displayStudents() {
   if (filterMajor.value !== "all") {
     filteredStudents = filteredStudents.filter(function (student) {
       return student.major === filterMajor.value;
+    });
+  }
+  if (sortGpa.value === "high") {
+    filteredStudents.sort(function (a, b) {
+      return b.gpa - a.gpa;
+    });
+  } else {
+    filteredStudents.sort(function (a, b) {
+      return a.gpa - b.gpa;
     });
   }
   if (filteredStudents.length === 0) {
@@ -105,6 +115,9 @@ search.addEventListener("keyup", function () {
   displayStudents();
 });
 filterMajor.addEventListener("change", function () {
+  displayStudents();
+});
+sortGpa.addEventListener("change", function () {
   displayStudents();
 });
 displayStudents();
