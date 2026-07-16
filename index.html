@@ -5,9 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Management System</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    
-    <script type="module" src="app.js"></script>
+    <header>
+      <h1>Student Management System</h1>
+      <p>Manage students easily</p>
+    </header>
+    <main>
+      <section class="student-form">
+        <h2>Add Student</h2>
+
+        <form id="studentForm">
+          <label for="studentName">Student Name</label>
+          <input name="studentName" type="text" id="studentName" />
+
+          <label for="studentId">Student ID</label>
+          <input name="studentId" type="text" id="studentId" />
+
+          <label for="major">Major</label>
+          <select name="major" id="major">
+            <option value="">Choose Major</option>
+            <option>Computer Science</option>
+            <option>Information Technology</option>
+            <option>Software Engineering</option>
+          </select>
+
+          <label for="gpa">GPA</label>
+          <input name="gpa" type="number" id="gpa" step="0.01" />
+
+          <button type="submit">Add Student</button>
+        </form>
+      </section>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
   </body>
 </html>
