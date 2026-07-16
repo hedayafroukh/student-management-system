@@ -21,13 +21,13 @@
 
         <form id="studentForm">
           <label for="studentName">Student Name</label>
-          <input name="studentName" type="text" id="studentName" />
+          <input name="studentName" type="text" id="studentName" required />
 
           <label for="studentId">Student ID</label>
-          <input name="studentId" type="text" id="studentId" />
+          <input name="studentId" type="text" id="studentId" required />
 
           <label for="major">Major</label>
-          <select name="major" id="major">
+          <select name="major" id="major" required>
             <option value="">Choose Major</option>
             <option>Computer Science</option>
             <option>Information Technology</option>
@@ -35,10 +35,26 @@
           </select>
 
           <label for="gpa">GPA</label>
-          <input name="gpa" type="number" id="gpa" step="0.01" />
+          <input name="gpa" type="number" id="gpa" step="0.01" required />
 
-          <button type="submit">Add Student</button>
+          <button class="btn-add" type="submit">Add Student</button>
         </form>
+      </section>
+
+      <section class="controls">
+        <input name="search" type="text" id="search" placeholder="Search Student" />
+
+        <select name="filterMajor" id="filterMajor">
+          <option value="all">All Majors</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Information Technology">Information Technology</option>
+          <option value="Software Engineering">Software Engineering</option>
+        </select>
+
+        <select name="sortGpa" id="sortGpa">
+          <option value="high">Highest GPA</option>
+          <option value="low">Lowest GPA</option>
+        </select>
       </section>
     </main>
 

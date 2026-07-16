@@ -53,11 +53,11 @@ section h2 {
   font-weight: bold;
   color: var(--label-color);
 }
-select {
+.student-form select {
   color: var(--select-color);
   cursor: pointer;
 }
-select option:first-child {
+.student-form select option:first-child {
   color: var(--option-color);
 }
 .student-form input,
@@ -68,7 +68,7 @@ select option:first-child {
   border-radius: 12px;
   font-size: 14px;
 }
-.student-form button {
+.btn-add {
   margin-top: 20px;
   padding: 16px 10px;
   background-color: var(--main-color);
@@ -80,13 +80,32 @@ select option:first-child {
   cursor: pointer;
   transition: 0.3s;
 }
-.student-form button:hover {
+.btn-add:hover {
   background-color: var(--second-color);
   transform: scale(1.02);
 }
-input:focus,
-select:focus {
+.student-form input:focus,
+.student-form select:focus,
+.controls input:focus,
+.controls select:focus {
   outline: none;
   border-color: #1e3d59;
   box-shadow: 0 0 5px rgba(30, 61, 89, 0.2);
+}
+.controls {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.controls input,
+.controls select {
+  flex: 1;
+  padding: 16px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--select-color);
+  cursor: pointer;
 }
