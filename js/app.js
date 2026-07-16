@@ -17,7 +17,6 @@ form.addEventListener("submit", function (event) {
   };
   students.push(student);
   displayStudents();
-  console.log(students);
   form.reset();
 });
 
@@ -43,3 +42,12 @@ function displayStudents() {
     studentTable.innerHTML += row;
   });
 }
+studentTable.addEventListener("click", function (event) {
+  if (event.target.classList.contains("delete-btn")) {
+    let index = event.target.dataset.index;
+    if (confirm("Are you sure you want to delete this student?")) {
+      students.splice(index, 1);
+      displayStudents();
+    }
+  }
+});
