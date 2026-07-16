@@ -42,7 +42,12 @@
       </section>
 
       <section class="controls">
-        <input name="search" type="text" id="search" placeholder="Search Student" />
+        <input
+          name="search"
+          type="text"
+          id="search"
+          placeholder="Search Student"
+        />
 
         <select name="filterMajor" id="filterMajor">
           <option value="all">All Majors</option>
@@ -55,6 +60,24 @@
           <option value="high">Highest GPA</option>
           <option value="low">Lowest GPA</option>
         </select>
+      </section>
+      
+      <section class="students">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>ID</th>
+              <th>Major</th>
+              <th>GPA</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody id="studentTable"></tbody>
+        </table>
+
+        <p id="message">No students found.</p>
       </section>
     </main>
 

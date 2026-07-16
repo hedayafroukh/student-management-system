@@ -9,6 +9,7 @@
   --background-color: #f4f6f9;
   --white: #ffffff;
   --border-color: #b4bfc5;
+  --border-color-focus: #1e3d59;
   --label-color: #082034;
   --select-color: #345d81;
   --option-color: #999;
@@ -89,7 +90,7 @@ section h2 {
 .controls input:focus,
 .controls select:focus {
   outline: none;
-  border-color: #1e3d59;
+  border-color: var(--border-color-focus);
   box-shadow: 0 0 5px rgba(30, 61, 89, 0.2);
 }
 .controls {
@@ -108,4 +109,54 @@ section h2 {
   font-size: 14px;
   color: var(--select-color);
   cursor: pointer;
+}
+
+.students table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 10px;
+  
+}
+.students thead th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.students thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.students thead {
+  background-color: var(--main-color);
+  color: var(--white);
+}
+.students th,
+.students td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+.students th {
+  font-weight: 600;
+}
+.students tbody tr {
+  transition: background-color 0.3s;
+}
+.students tbody tr:hover {
+  background-color: var(--background-color);
+}
+.students tbody tr:last-child td {
+  border-bottom: none;
+}
+.students td {
+  color: var(--label-color);
+}
+#message {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--option-color);
+  font-size: 15px;
 }
