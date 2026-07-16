@@ -115,11 +115,9 @@ section h2 {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  border: 1px solid var(--border-color);
   border-radius: 12px;
   overflow: hidden;
   margin-top: 10px;
-  
 }
 .students thead th:first-child {
   border-top-left-radius: 12px;
@@ -159,4 +157,70 @@ section h2 {
   text-align: center;
   color: var(--option-color);
   font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 28px;
+  }
+
+  header p {
+    font-size: 15px;
+  }
+
+  section {
+    padding: 15px;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls input,
+  .controls select {
+    width: 100%;
+  }
+
+  .students {
+    overflow-x: auto;
+  }
+
+  .students table {
+    min-width: 650px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    width: 95%;
+    margin: 20px auto;
+  }
+
+  header {
+    padding: 15px;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  header p {
+    font-size: 14px;
+  }
+
+  .student-form input,
+  .student-form select,
+  .controls input,
+  .controls select,
+  .btn-add {
+    font-size: 14px;
+    padding: 14px 10px;
+  }
+
+  .students th,
+  .students td {
+    padding: 12px;
+    font-size: 14px;
+  }
 }
