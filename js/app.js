@@ -1,4 +1,6 @@
-let students = JSON.parse(localStorage.getItem("students")) || [];
+import { saveStudents, loadStudents } from "./storage.js";
+
+let students = loadStudents();
 
 const form = document.getElementById("studentForm");
 const studentName = document.getElementById("studentName");
@@ -42,15 +44,11 @@ form.addEventListener("submit", function (event) {
     gpa: Number(gpa.value),
   };
   students.push(student);
-  saveStudents();
+  saveStudents(students);
   displayStudents();
   form.reset();
   studentName.focus();
 });
-
-function saveStudents() {
-  localStorage.setItem("students", JSON.stringify(students));
-}
 
 function displayStudents() {
   studentTable.innerHTML = "";
@@ -110,7 +108,7 @@ studentTable.addEventListener("click", function (event) {
     let index = event.target.dataset.index;
     if (confirm("Are you sure you want to delete this student?")) {
       students.splice(index, 1);
-      saveStudents();
+      saveStudents(students);
       displayStudents();
     }
   }
@@ -122,7 +120,7 @@ studentTable.addEventListener("click", function (event) {
     major.value = student.major;
     gpa.value = student.gpa;
     students.splice(index, 1);
-    saveStudents();
+    saveStudents(students);
     displayStudents();
   }
 });
