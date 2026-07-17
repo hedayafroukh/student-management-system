@@ -1,4 +1,5 @@
 import { saveStudents, loadStudents } from "./storage.js";
+import { validateStudent, duplicateId } from "./validation.js";
 
 let students = loadStudents();
 
@@ -15,25 +16,11 @@ const sortGpa = document.getElementById("sortGpa");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  if (
-    studentName.value === "" ||
-    studentId.value === "" ||
-    major.value === "" ||
-    gpa.value === ""
-  ) {
-    alert("Please fill all fields.");
-    return;
-  }
-  if (gpa.value < 0 || gpa.value > 4) {
-    alert("GPA must be between 0 and 4.");
+  if (!validateStudent(studentName, studentId, major, gpa)) {
     return;
   }
 
-  let foundStudent = students.find(function (student) {
-    return student.id === studentId.value;
-  });
-
-  if (foundStudent) {
+  if (duplicateId(students, studentId)) {
     alert("Student ID already exists.");
     return;
   }
