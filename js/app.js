@@ -1,4 +1,4 @@
-let students = [];
+let students = JSON.parse(localStorage.getItem("students")) || [];
 
 const form = document.getElementById("studentForm");
 const studentName = document.getElementById("studentName");
@@ -22,6 +22,11 @@ form.addEventListener("submit", function (event) {
     alert("Please fill all fields.");
     return;
   }
+  if (gpa.value < 0 || gpa.value > 4) {
+    alert("GPA must be between 0 and 4.");
+    return;
+  }
+
   let foundStudent = students.find(function (student) {
     return student.id === studentId.value;
   });
@@ -37,9 +42,15 @@ form.addEventListener("submit", function (event) {
     gpa: Number(gpa.value),
   };
   students.push(student);
+  saveStudents();
   displayStudents();
   form.reset();
+  studentName.focus();
 });
+
+function saveStudents() {
+  localStorage.setItem("students", JSON.stringify(students));
+}
 
 function displayStudents() {
   studentTable.innerHTML = "";
@@ -71,7 +82,10 @@ function displayStudents() {
   } else {
     message.style.display = "none";
   }
-  filteredStudents.forEach(function (student, index) {
+  filteredStudents.forEach(function (student) {
+    let index = students.findIndex(function (item) {
+      return item.id === student.id;
+    });
     let row = `
         <tr>
             <td>${student.name}</td>
@@ -96,6 +110,7 @@ studentTable.addEventListener("click", function (event) {
     let index = event.target.dataset.index;
     if (confirm("Are you sure you want to delete this student?")) {
       students.splice(index, 1);
+      saveStudents();
       displayStudents();
     }
   }
@@ -107,11 +122,11 @@ studentTable.addEventListener("click", function (event) {
     major.value = student.major;
     gpa.value = student.gpa;
     students.splice(index, 1);
-
+    saveStudents();
     displayStudents();
   }
 });
-search.addEventListener("keyup", function () {
+search.addEventListener("input", function () {
   displayStudents();
 });
 filterMajor.addEventListener("change", function () {
