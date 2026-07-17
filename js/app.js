@@ -14,6 +14,7 @@ const message = document.getElementById("message");
 const search = document.getElementById("search");
 const filterMajor = document.getElementById("filterMajor");
 const sortGpa = document.getElementById("sortGpa");
+const averageGpa = document.getElementById("averageGpa");
 
 let editIndex = null;
 
@@ -56,6 +57,7 @@ form.addEventListener("submit", function (event) {
     search,
     filterMajor,
     sortGpa,
+    averageGpa,
   );
   form.reset();
   studentName.focus();
@@ -74,6 +76,7 @@ studentTable.addEventListener("click", function (event) {
         search,
         filterMajor,
         sortGpa,
+        averageGpa,
       );
     }
   }
@@ -85,7 +88,7 @@ studentTable.addEventListener("click", function (event) {
     major.value = student.major;
     gpa.value = student.gpa;
 
-    editIndex = index;
+    editIndex = Number(index);
     form.querySelector("button").textContent = "Update Student";
   }
 });
@@ -97,6 +100,7 @@ search.addEventListener("input", function () {
     search,
     filterMajor,
     sortGpa,
+    averageGpa,
   );
 });
 filterMajor.addEventListener("change", function () {
@@ -107,6 +111,7 @@ filterMajor.addEventListener("change", function () {
     search,
     filterMajor,
     sortGpa,
+    averageGpa,
   );
 });
 sortGpa.addEventListener("change", function () {
@@ -117,6 +122,15 @@ sortGpa.addEventListener("change", function () {
     search,
     filterMajor,
     sortGpa,
+    averageGpa,
   );
 });
-displayStudents(students, studentTable, message, search, filterMajor, sortGpa);
+displayStudents(
+  students,
+  studentTable,
+  message,
+  search,
+  filterMajor,
+  sortGpa,
+  averageGpa,
+);

@@ -15,9 +15,9 @@ export function validateStudent(studentName, studentId, major, gpa) {
   }
   return true;
 }
-export function duplicateId(students, studentId, editingId = null) {
-  return students.find(function (student) {
-    if (editingId !== null && student.id === editingId) {
+export function duplicateId(students, studentId, editingIndex = null) {
+  return students.find(function (student, index) {
+    if (index === editingIndex) {
       return false;
     }
     return student.id === studentId.value;

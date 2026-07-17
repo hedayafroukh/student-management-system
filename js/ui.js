@@ -5,6 +5,7 @@ export function displayStudents(
   search,
   filterMajor,
   sortGpa,
+  averageGpa,
 ) {
   studentTable.textContent = "";
 
@@ -25,11 +26,21 @@ export function displayStudents(
     filteredStudents.sort(function (a, b) {
       return b.gpa - a.gpa;
     });
-  } else {
+  } else if (sortGpa.value === "low") {
     filteredStudents.sort(function (a, b) {
       return a.gpa - b.gpa;
     });
   }
+  let average = 0;
+
+  if (filteredStudents.length > 0) {
+    let total = filteredStudents.reduce(function (sum, student) {
+      return sum + student.gpa;
+    }, 0);
+    average = total / filteredStudents.length;
+  }
+  averageGpa.textContent = average.toFixed(2);
+
   if (filteredStudents.length === 0) {
     message.style.display = "block";
   } else {
