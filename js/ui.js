@@ -6,7 +6,7 @@ export function displayStudents(
   filterMajor,
   sortGpa,
 ) {
-  studentTable.innerHTML = "";
+  studentTable.textContent = "";
 
   let searchValue = search.value.toLowerCase();
 
@@ -39,22 +39,41 @@ export function displayStudents(
     let index = students.findIndex(function (item) {
       return item.id === student.id;
     });
-    let row = `
-        <tr>
-            <td>${student.name}</td>
-            <td>${student.id}</td>
-            <td>${student.major}</td>
-            <td>${student.gpa}</td>
-            <td>
-                <button class="edit-btn" data-index="${index}">
-                    Edit
-                </button>
-                <button class="delete-btn" data-index="${index}">
-                    Delete
-                </button>
-            </td>
-        </tr>
-        `;
-    studentTable.innerHTML += row;
+    const row = document.createElement("tr");
+
+    const nameCell = document.createElement("td");
+    nameCell.textContent = student.name;
+
+    const idCell = document.createElement("td");
+    idCell.textContent = student.id;
+
+    const majorCell = document.createElement("td");
+    majorCell.textContent = student.major;
+
+    const gpaCell = document.createElement("td");
+    gpaCell.textContent = student.gpa;
+
+    const actionCell = document.createElement("td");
+
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit";
+    editButton.classList.add("edit-btn");
+    editButton.dataset.index = index;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("delete-btn");
+    deleteButton.dataset.index = index;
+
+    actionCell.appendChild(editButton);
+    actionCell.appendChild(deleteButton);
+
+    row.appendChild(nameCell);
+    row.appendChild(idCell);
+    row.appendChild(majorCell);
+    row.appendChild(gpaCell);
+    row.appendChild(actionCell);
+
+    studentTable.appendChild(row);
   });
 }
