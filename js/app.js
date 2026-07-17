@@ -15,6 +15,7 @@ const search = document.getElementById("search");
 const filterMajor = document.getElementById("filterMajor");
 const sortGpa = document.getElementById("sortGpa");
 const averageGpa = document.getElementById("averageGpa");
+const successMessage = document.getElementById("successMessage");
 
 let editIndex = null;
 
@@ -29,6 +30,8 @@ form.addEventListener("submit", function (event) {
     return;
   }
 
+  let isEditing = editIndex !== null;
+
   let student = {
     name: studentName.value,
     id: studentId.value,
@@ -36,7 +39,7 @@ form.addEventListener("submit", function (event) {
     gpa: Number(gpa.value),
   };
 
-  if (editIndex === null) {
+  if (!isEditing) {
     students.push(student);
   } else {
     students = students.map(function (item, index) {
@@ -50,6 +53,16 @@ form.addEventListener("submit", function (event) {
     form.querySelector("button").textContent = "Add Student";
   }
   saveStudents(students);
+  if (isEditing) {
+    successMessage.textContent = "Student updated successfully.";
+  } else {
+    successMessage.textContent = "Student added successfully.";
+  }
+
+  setTimeout(function () {
+    successMessage.textContent = "";
+  }, 2000);
+
   displayStudents(
     students,
     studentTable,
@@ -69,6 +82,12 @@ studentTable.addEventListener("click", function (event) {
     if (confirm("Are you sure you want to delete this student?")) {
       students.splice(index, 1);
       saveStudents(students);
+      
+      successMessage.textContent = "Student deleted successfully.";
+      setTimeout(function () {
+        successMessage.textContent = "";
+      }, 2000);
+
       displayStudents(
         students,
         studentTable,
